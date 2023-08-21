@@ -2,14 +2,10 @@ package com.picpaysimplificado.domain.transaction;
 
 import com.picpaysimplificado.domain.user.User;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 @Entity(name="transactions")
 @Table(name="transactions")
@@ -17,11 +13,12 @@ import java.util.UUID;
 @Setter
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
+@NoArgsConstructor
 
 public class Transaction {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private BigDecimal amount;
     @ManyToOne
     @JoinColumn(name="sender_id")
